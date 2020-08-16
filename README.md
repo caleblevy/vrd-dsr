@@ -1,3 +1,25 @@
+#Augmented Instructions by Caleb
+
+This code only runs in python 2, and is built on the assumption you have access to CUDA, which Macs no longer have. I've modified this code to run without CUDA, but this requires additional steps. Use the following procedures to get things working:
+
+
+0. You'll need to download the datasets and model files described in the subsequent sections of this README, and place them according to the instructions. All files appear to be present.
+
+1. You'll need to create a python environment with python2. (On Mac this can be done by installing virtualenv with a brewed version of python3 and running the command at [this](https://stackoverflow.com/a/1534343) link, but with the python path set as /usr/bin/python.)
+
+2. I believe you'll need a few other libraries install (opencv, openexr, and libffi, libomp. This list is not exhaustiv) These can be taken care of via homebrew
+
+3. Run `pip install -r requirements.txt` after sourcing your virtual env.
+
+4. Run `python lib/roi_pooling/build.py`. This should produce warnings, but no errors.
+
+5. Run `faster-rcnn/lib/make.sh`. There will be some errors (where the makefile tries to call CUDA compilers), but these should be ignorable, and compile a sufficient portion of the submodule for running vrd-dsr on a machine without CUDA.
+
+
+There could well be (and probably are) steps I've forgotten, but this should cover a lot of them.
+
+
+
 # Visual Relationship Detection with Deep Structural Ranking
 
 The code is written in python and pytorch (0.2.0) [torch-0.2.0.post3].
@@ -5,11 +27,8 @@ The code is written in python and pytorch (0.2.0) [torch-0.2.0.post3].
 Since I have graduated, I may not be able to respond to the issues in time. Thanks for your understanding.
 
 ### Clone the repo
-  * `git clone git@github.com:GriffinLiang/vrd-dsr.git`
-  * `git submodule update --recursive`
-
-  OR
-  * `git clone --recursive git@github.com:GriffinLiang/vrd-dsr.git`
+  * `git clone https://github.com/caleblevy/vrd-dsr`
+  * `git submodule update --init --recursive`
 
 ### Data Preparation
 
