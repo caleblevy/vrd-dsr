@@ -17,8 +17,8 @@ if torch.cuda.is_available():
 
 this_file = os.path.dirname(os.path.realpath(__file__))
 print(this_file)
-extra_objects = ['src/cuda/roi_pooling_kernel.cu.o'] # Thanks Xiaojun for pointing this out.
-extra_objects = [os.path.join(this_file, fname) for fname in extra_objects]
+# extra_objects = ['src/cuda/roi_pooling_kernel.cu.o'] # Thanks Xiaojun for pointing this out.
+# extra_objects = [os.path.join(this_file, fname) for fname in extra_objects]
 
 ffi = create_extension(
     '_ext.roi_pooling',
@@ -26,8 +26,8 @@ ffi = create_extension(
     sources=sources,
     define_macros=defines,
     relative_to=__file__,
-    with_cuda=with_cuda,
-    extra_objects=extra_objects
+    with_cuda=with_cuda
+    # extra_objects=extra_objects
 )
 
 if __name__ == '__main__':

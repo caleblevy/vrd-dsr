@@ -42,12 +42,12 @@ class vrd_module():
             self.vrd_rels = [ x.strip() for x in f.readlines() ]
         # Model
         self.net = Vrd_Model(self.args)
-        self.net.cuda()
+        # self.net.cuda()
         self.net.eval()
         model_path = 'models/epoch_4_checkpoint.pth.tar'
         if osp.isfile(model_path):
             print("=> loading model '{}'".format(model_path))
-            checkpoint = torch.load(model_path)
+            checkpoint = torch.load(model_path, map_location=(lambda storage, loc: storage))
             self.net.load_state_dict(checkpoint['state_dict'])        
         else:
             print "=> no model found at '{}'".format(args.resume)

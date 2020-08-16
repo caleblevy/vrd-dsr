@@ -140,7 +140,7 @@ def pretrain_with_det(net, det_model_path):
     model_dict.update(det_model)
     net.load_state_dict(model_dict)
 
-def np_to_variable(x, is_cuda=True, dtype=torch.FloatTensor):
+def np_to_variable(x, is_cuda=False, dtype=torch.FloatTensor):
     v = Variable(torch.from_numpy(x).type(dtype))
     if is_cuda:
         v = v.cuda()

@@ -76,14 +76,14 @@ class Vrd_Model(nn.Module):
         self.fc_rel = FC(256, self.n_rel, relu=False)
 
     def forward(self, im_data, boxes, rel_boxes, SpatialFea, classes, ix1, ix2, args):
-        im_data = network.np_to_variable(im_data, is_cuda=True)
+        im_data = network.np_to_variable(im_data, is_cuda=False)
         im_data = im_data.permute(0, 3, 1, 2)
-        boxes = network.np_to_variable(boxes, is_cuda=True)
-        rel_boxes = network.np_to_variable(rel_boxes, is_cuda=True)
-        SpatialFea = network.np_to_variable(SpatialFea, is_cuda=True)
-        classes = network.np_to_variable(classes, is_cuda=True, dtype=torch.LongTensor)
-        ix1 = network.np_to_variable(ix1, is_cuda=True, dtype=torch.LongTensor)
-        ix2 = network.np_to_variable(ix2, is_cuda=True, dtype=torch.LongTensor)
+        boxes = network.np_to_variable(boxes, is_cuda=False)
+        rel_boxes = network.np_to_variable(rel_boxes, is_cuda=False)
+        SpatialFea = network.np_to_variable(SpatialFea, is_cuda=False)
+        classes = network.np_to_variable(classes, is_cuda=False, dtype=torch.LongTensor)
+        ix1 = network.np_to_variable(ix1, is_cuda=False, dtype=torch.LongTensor)
+        ix2 = network.np_to_variable(ix2, is_cuda=False, dtype=torch.LongTensor)
 
         x = self.conv1(im_data)
         x = self.conv2(x)
